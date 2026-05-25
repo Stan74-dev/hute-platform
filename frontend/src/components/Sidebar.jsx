@@ -20,6 +20,7 @@ export default function Sidebar() {
         <NavLink to="/">Dashboard</NavLink>
         <NavLink to="/pos">POS Checkout</NavLink>
         <NavLink to="/sales">Sales History</NavLink>
+        <NavLink to="/refunds">Refunds</NavLink>
         {canManage ? <NavLink to="/products">Products</NavLink> : null}
         {canManage ? <NavLink to="/warehouses">Warehouses</NavLink> : null}
         {canManage ? <NavLink to="/transfers">Stock Transfers</NavLink> : null}
