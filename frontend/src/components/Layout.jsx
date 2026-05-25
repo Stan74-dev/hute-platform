@@ -45,6 +45,7 @@ export default function Layout() {
         items: [
           { label: 'POS', path: '/pos' },
           { label: 'Sales', path: '/sales' },
+          { label: 'Refunds', path: '/refunds' },
           { label: 'Sales Analytics', path: '/sales-analytics' },
         ],
       },
