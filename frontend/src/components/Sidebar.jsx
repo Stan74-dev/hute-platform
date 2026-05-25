@@ -17,13 +17,26 @@ export default function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-brand">HUTE</div>
       <nav className="sidebar-nav">
-        <NavLink to="/">Dashboard</NavLink>
-        <NavLink to="/pos">POS Checkout</NavLink>
-        <NavLink to="/sales">Sales History</NavLink>
-        <NavLink to="/refunds">Refunds</NavLink>
-        {canManage ? <NavLink to="/products">Products</NavLink> : null}
-        {canManage ? <NavLink to="/warehouses">Warehouses</NavLink> : null}
-        {canManage ? <NavLink to="/transfers">Stock Transfers</NavLink> : null}
+        <div className="nav-section">
+          <div className="nav-section-title">Operations</div>
+          <NavLink to="/">Dashboard</NavLink>
+          <NavLink to="/pos">POS Checkout</NavLink>
+        </div>
+
+        <div className="nav-section">
+          <div className="nav-section-title">Sales</div>
+          <NavLink to="/sales">Sales History</NavLink>
+          <NavLink to="/refunds">Refunds</NavLink>
+        </div>
+
+        {canManage ? (
+          <div className="nav-section">
+            <div className="nav-section-title">Inventory & Procurement</div>
+            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/warehouses">Warehouses</NavLink>
+            <NavLink to="/transfers">Stock Transfers</NavLink>
+          </div>
+        ) : null}
       </nav>
     </aside>
   )
