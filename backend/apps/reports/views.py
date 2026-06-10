@@ -4,7 +4,16 @@ from django.utils import timezone
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
 from apps.sales.models import Sale, Refund
+
+
+def safe_sum(queryset, field_name):
+    try:
+        return queryset.aggregate(v=Sum(field_name))["v"] or Decimal("0.00")
+    except Exception:
+        return Decimal("0.00")
+
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
@@ -27,23 +36,24 @@ def owner_mobile_dashboard(request):
         sales = sales.filter(created_at__date__lte=end)
         refunds = refunds.filter(created_at__date__lte=end)
 
-    totals = sales.aggregate(
-        total_sales=Sum("total_amount"),
-        transaction_count=Count("id"),
-        total_profit=Sum("total_profit"),
-    )
+    total_sales = safe_sum(sales, "total_amount")
+    total_profit = safe_sum(sales, "total_profit")
+    cash_sales = sales.filter(payment_method__icontains="cash")
+    card_sales = sales.filter(payment_method__icontains="card")
 
-    cash_sales = sales.filter(payment_method__icontains="cash").aggregate(v=Sum("total_amount"))["v"] or Decimal("0.00")
-    card_sales = sales.filter(payment_method__icontains="card").aggregate(v=Sum("total_amount"))["v"] or Decimal("0.00")
-    refunds_total = refunds.aggregate(v=Sum("total_refund_amount"))["v"] or Decimal("0.00")
+    refunds_total = (
+        safe_sum(refunds, "total_refund_amount")
+        or safe_sum(refunds, "total_amount")
+        or safe_sum(refunds, "amount")
+    )
 
     return Response({
         "date": str(today),
-        "total_sales": totals.get("total_sales") or Decimal("0.00"),
-        "transaction_count": totals.get("transaction_count") or 0,
-        "cash_sales": cash_sales,
-        "card_sales": card_sales,
-        "total_profit": totals.get("total_profit") or Decimal("0.00"),
+        "total_sales": total_sales,
+        "transaction_count": sales.count(),
+        "cash_sales": safe_sum(cash_sales, "total_amount"),
+        "card_sales": safe_sum(card_sales, "total_amount"),
+        "total_profit": total_profit,
         "refunds_total": refunds_total,
         "anomalies_count": 0,
     })
