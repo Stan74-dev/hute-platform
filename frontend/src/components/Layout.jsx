@@ -34,6 +34,7 @@ export default function Layout() {
         label: 'Operations',
         items: [
           { label: 'Dashboard', path: '/dashboard' },
+          { label: 'Owner Mobile', path: '/owner-mobile' },
           { label: 'Executive Dashboard', path: '/executive-dashboard' },
           { label: 'Historical Trends', path: '/historical-trends' },
           { label: 'Day Detail', path: '/day-detail' },
@@ -55,6 +56,7 @@ export default function Layout() {
         items: [
           { label: 'Products', path: '/products' },
           { label: 'Warehouses', path: '/warehouses' },
+          { label: 'Branches', path: '/branches' },
           { label: 'Transfers', path: '/transfers' },
           { label: 'Purchase Orders', path: '/purchase-orders' },
           { label: 'Goods Received', path: '/goods-received' },
@@ -92,6 +94,7 @@ export default function Layout() {
           { label: 'Users', path: '/users' },
           { label: 'Finance', path: '/finance' },
           { label: 'Tax Summary', path: '/tax-summary' },
+          { label: 'Payment Settings', path: '/payment-settings' },
         ],
       })
     }

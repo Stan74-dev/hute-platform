@@ -31,6 +31,9 @@ import AuditTrailPage from './pages/AuditTrailPage'
 import UsersPage from './pages/UsersPage'
 import FinancePage from './pages/FinancePage'
 import TaxSummaryPage from './pages/TaxSummaryPage'
+import BranchesPage from './pages/BranchesPage'
+import MobileOwnerDashboardPage from './pages/MobileOwnerDashboardPage'
+import PaymentSettingsPage from './pages/PaymentSettingsPage'
 
 function isAuthenticated() {
   return Boolean(localStorage.getItem('access_token'))
@@ -85,6 +88,10 @@ export default function App() {
           <Route path="anomaly-dashboard" element={<AnomalyDashboardPage />} />
           <Route path="anomaly-cases" element={<AnomalyCasesPage />} />
           <Route path="anomaly-cases/:caseId" element={<AnomalyCaseDetailPage />} />
+
+          <Route path="branches" element={<BranchesPage />} />
+          <Route path="owner-mobile" element={<MobileOwnerDashboardPage />} />
+          <Route path="payment-settings" element={<PaymentSettingsPage />} />
 
           <Route path="daily-summary" element={<DailySummaryPage />} />
           <Route path="audit-trail" element={<AuditTrailPage />} />
