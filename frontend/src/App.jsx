@@ -34,6 +34,10 @@ import TaxSummaryPage from './pages/TaxSummaryPage'
 import BranchesPage from './pages/BranchesPage'
 import MobileOwnerDashboardPage from './pages/MobileOwnerDashboardPage'
 import PaymentSettingsPage from './pages/PaymentSettingsPage'
+import FiscalisationPage from './pages/FiscalisationPage'
+import MultiCurrencyPage from './pages/MultiCurrencyPage'
+import MobileMoneyPage from './pages/MobileMoneyPage'
+import LicensingPage from './pages/LicensingPage'
 
 function isAuthenticated() {
   return Boolean(localStorage.getItem('access_token'))
@@ -92,6 +96,11 @@ export default function App() {
           <Route path="branches" element={<BranchesPage />} />
           <Route path="owner-mobile" element={<MobileOwnerDashboardPage />} />
           <Route path="payment-settings" element={<PaymentSettingsPage />} />
+
+          <Route path="fiscalisation" element={<FiscalisationPage />} />
+          <Route path="multi-currency" element={<MultiCurrencyPage />} />
+          <Route path="mobile-money" element={<MobileMoneyPage />} />
+          <Route path="licensing" element={<LicensingPage />} />
 
           <Route path="daily-summary" element={<DailySummaryPage />} />
           <Route path="audit-trail" element={<AuditTrailPage />} />

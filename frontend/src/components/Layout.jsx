@@ -84,6 +84,16 @@ export default function Layout() {
           { label: 'Audit Trail', path: '/audit-trail' },
         ],
       },
+      {
+        key: 'enterprise',
+        label: 'Enterprise',
+        items: [
+          { label: 'Fiscalisation', path: '/fiscalisation' },
+          { label: 'Multi Currency', path: '/multi-currency' },
+          { label: 'Mobile Money', path: '/mobile-money' },
+          { label: 'Licensing', path: '/licensing' },
+        ],
+      },
     ]
 
     if (isAdmin) {

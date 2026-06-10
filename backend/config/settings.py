@@ -29,6 +29,10 @@ INSTALLED_APPS = [
     "apps.branches",
     "apps.reports",
     "apps.payments",
+    "apps.fiscalisation",
+    "apps.multicurrency",
+    "apps.mobilemoney",
+    "apps.licensing",
 ]
 
 MIDDLEWARE = [
